@@ -116,7 +116,7 @@ public class MouseAttack : PhysicsGame
     private void  LisaaEtu()
     {
         PhysicsObject etu = LuoEtu(RandomGen.NextDouble(Level.Left, Level.Right), Level.Top);
-        //PhysicsObject etu = new PhysicsObject(60, 60, Shape.Circle);
+        //PhysicsObject etu = new PhysicsgiObject(60, 60, Shape.Circle);
         //etu.Color = Color.Black;
         //etu.X = RandomGen.NextDouble(Level.Left, Level.Right);
         //etu.Y = Level.Top;
