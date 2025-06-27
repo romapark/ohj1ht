@@ -25,6 +25,7 @@ public class MouseAttack : PhysicsGame
     private Timer ajastin;
     private ScoreList topLista = new ScoreList(10, false, 0);
     
+    
     public override void Begin()
     {
         SetWindowSize(750, 900);
@@ -92,6 +93,7 @@ public class MouseAttack : PhysicsGame
         
     }
 
+    
     /// <summary>
     /// Luodaan hiiret
     /// </summary>
@@ -113,6 +115,7 @@ public class MouseAttack : PhysicsGame
         Timer.SingleShot(RandomGen.NextDouble(1, 2), LisaaHiiri);
     }
     
+    
     /// <summary>
     /// Lisätään etu
     /// </summary>
@@ -130,6 +133,7 @@ public class MouseAttack : PhysicsGame
         Timer.SingleShot(30 , LisaaEtu);
     }
 
+    
     /// <summary>
     /// Luodaan etu
     /// </summary>
@@ -154,6 +158,7 @@ public class MouseAttack : PhysicsGame
         
     }
 
+    
     /// <summary>
     /// Etu katoaa osuessaan karkkikasaan
     /// </summary>
@@ -163,6 +168,7 @@ public class MouseAttack : PhysicsGame
     {
         etu.Destroy();
     }
+    
     
     /// <summary>
     /// Hiirien nopeus hidastuu kun etu kerätään
@@ -216,6 +222,7 @@ public class MouseAttack : PhysicsGame
         }
     }
 
+    
     /// <summary>
     /// Luodaan pelin lopetuksen tapahtumat
     /// </summary>
@@ -252,10 +259,10 @@ public class MouseAttack : PhysicsGame
        topIkkuna.List.PositionColor = Color.Black;
        
        Add(topIkkuna);
-       //Timer.SingleShot(1, topIkkuna.NameInputWindow);
 
 
     }
+    
     
     /// <summary>
     /// tallennetaan aika jolloin peli loppui
@@ -265,6 +272,7 @@ public class MouseAttack : PhysicsGame
     {
         DataStorage.Save<ScoreList>(topLista, "pisteet.xml");
     }
+    
     
     /// <summary>
     /// Aloitetaan peli alusta
