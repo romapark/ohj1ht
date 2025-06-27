@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
+
 using Jypeli;
 using Jypeli.Assets;
-using Jypeli.Controls;
 using Jypeli.Widgets;
 
 namespace MouseAttack;
@@ -38,7 +36,6 @@ public class MouseAttack : PhysicsGame
         Timer.SingleShot(30, LisaaEtu);
 
         topLista = DataStorage.TryLoad<ScoreList>(topLista, "pisteet.xml");
-
         
         AsetaOhjaimet(pelaaja, tykki);
         
@@ -212,10 +209,10 @@ public class MouseAttack : PhysicsGame
     /// </summary>
     /// <param name="ammus"></param>
     /// <param name="kohde"></param>
-    void AmmusOsui(PhysicsObject ammus, PhysicsObject kohde)
+    private void AmmusOsui(PhysicsObject ammus, PhysicsObject kohde)
     {
 
-        if (kohde.Tag == "hiiri" || kohde.Tag == "etu")
+        if (kohde.Tag == "hiiri")
         {
             kohde.Destroy();
             ammus.Destroy();
@@ -282,11 +279,12 @@ public class MouseAttack : PhysicsGame
             ClearAll();
             Begin();
     }
-    
-    
+
+
     /// <summary>
     /// Määrittää näppäimet
     /// </summary>
+    /// <param name="pelaaja">tykki</param>
     /// <param name="tykki">liittä komennon tykkiin</param>
     private void AsetaOhjaimet(PhysicsObject pelaaja, Cannon tykki)
     {
@@ -329,7 +327,7 @@ public class MouseAttack : PhysicsGame
     /// Määrittää aseen ammuksen
     /// </summary>
     /// <param name="ase">käytetty ase</param>
-    void AmmuAseella(Cannon ase)
+    private void AmmuAseella(Cannon ase)
     {
         PhysicsObject ammus = ase.Shoot();
 
