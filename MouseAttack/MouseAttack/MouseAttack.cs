@@ -113,17 +113,12 @@ public class MouseAttack : PhysicsGame
         Timer.SingleShot(RandomGen.NextDouble(1, 2), LisaaHiiri);
     }
     
+    /// <summary>
+    /// Lisätään etu
+    /// </summary>
     private void  LisaaEtu()
     {
         PhysicsObject etu = LuoEtu(RandomGen.NextDouble(Level.Left, Level.Right), Level.Top);
-        //PhysicsObject etu = new PhysicsgiObject(60, 60, Shape.Circle);
-        //etu.Color = Color.Black;
-        //etu.X = RandomGen.NextDouble(Level.Left, Level.Right);
-        //etu.Y = Level.Top;
-        //etu.Velocity = new Vector(0, -100);
-        //etu.Tag = "etu";
-        //etu.Image = etukuva;
-        //etu.CollisionIgnoreGroup = 1;
         etu.MakeStatic();
         Timer.SingleShot(9.1, delegate
         {
@@ -132,13 +127,15 @@ public class MouseAttack : PhysicsGame
             etu.Destroy();
             etu = LuoEtu(x, y);
         });
-        
-
-        
-
         Timer.SingleShot(30 , LisaaEtu);
     }
 
+    /// <summary>
+    /// Luodaan etu
+    /// </summary>
+    /// <param name="x">sijainti johon etu ilmestyy</param>
+    /// <param name="y">sijainti johon etu ilmestyy</param>
+    /// <returns>palauttaa luodun edun</returns>
     private PhysicsObject LuoEtu(double x, double y)
     {
         PhysicsObject etu = new PhysicsObject(60, 60, Shape.Circle);
@@ -157,11 +154,21 @@ public class MouseAttack : PhysicsGame
         
     }
 
+    /// <summary>
+    /// Etu katoaa osuessaan karkkikasaan
+    /// </summary>
+    /// <param name="etu">etu</param>
+    /// <param name="kohde">karkkikasa</param>
     private static void EtuKatoaa(PhysicsObject etu, PhysicsObject kohde)
     {
         etu.Destroy();
     }
     
+    /// <summary>
+    /// Hiirien nopeus hidastuu kun etu kerätään
+    /// </summary>
+    /// <param name="etu">etu</param>
+    /// <param name="kohde">tykki</param>
     private void NopeusHidastuu(PhysicsObject etu, PhysicsObject kohde)
     {
         double a = nopeusHiiri / 2;
@@ -171,6 +178,9 @@ public class MouseAttack : PhysicsGame
     }
 
     
+    /// <summary>
+    /// Luodaan peliin ajastin
+    /// </summary>
     private void LuoAjastin()
     {
         ajastin = new Timer();
@@ -206,6 +216,11 @@ public class MouseAttack : PhysicsGame
         }
     }
 
+    /// <summary>
+    /// Luodaan pelin lopetuksen tapahtumat
+    /// </summary>
+    /// <param name="tormaaja">hiiri</param>
+    /// <param name="kohde">karkkikasa</param>
     private void PeliLoppuu(PhysicsObject tormaaja, PhysicsObject kohde)
     {
         IsPaused = true;
@@ -241,10 +256,19 @@ public class MouseAttack : PhysicsGame
 
 
     }
+    
+    /// <summary>
+    /// tallennetaan aika jolloin peli loppui
+    /// </summary>
+    /// <param name="sender"></param>
     private void TallennaPisteet(Window sender)
     {
         DataStorage.Save<ScoreList>(topLista, "pisteet.xml");
     }
+    
+    /// <summary>
+    /// Aloitetaan peli alusta
+    /// </summary>
     private void AloitaPeli()
     {
             ClearAll();
